@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.add-blacklist-btn {
+  --text-color: #ffe5da;
+  --yt-primary-color: #d11919;
+  --secondary-color: #a95b00;
+
+  @apply absolute;
+  @apply z-50;
+  @apply -top-3;
+  @apply -right-3;
+  @apply w-12;
+  @apply h-12;
+  @apply rounded-full;
+  @apply text-2xl;
+  @apply font-semibold;
+  @apply antialiased;
+  @apply text-[var(--text-color)];
+
+  @apply border-2;
+  @apply border-[var(--text-color)];
+
+  @apply bg-gradient-to-tr;
+  @apply from-[var(--yt-primary-color)];
+  @apply to-[var(--secondary-color)];
+
+  @apply after:content-['X'];
+}

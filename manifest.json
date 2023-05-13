@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "YouList",
+  "description": "Remove blacklisted videos from the YouTube's main page",
+  "homepage-url": "https://github.com/StanlsSlav/YouList",
+  "version": "1.0.0",
+
+  "permissions": ["storage"],
+  "host_permissions": ["*://*.youtube.com/"],
+
+  "content_scripts": [{
+    "matches": ["*://*.youtube.com/"],
+    "js": ["./dist/main.js"],
+    "css": ["./dist/css/styles.css"]
+  }],
+
+  "action": {
+    "default_icon": "./src/icons/icon-32.svg",
+    "default_title": "YouList"
+  },
+
+  "icons": {
+    "48": "./src/icons/icon.svg",
+    "96": "./src/icons/icon-96.svg"
+  },
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{1b245e68-8d16-489c-b114-5f7466e7f67c}",
+      "strict_min_version": "109.0"
+    }
+  }
+}

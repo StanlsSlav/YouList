@@ -1,0 +1,31 @@
+{
+  "name": "youlist",
+  "description": "Remove distractions from YouTube, your way",
+  "license": "ISC",
+  "version": "1.0.0",
+  "author": "StanlsSlav",
+  "main": "./src/main.ts",
+  "config": {
+    "outDir": ".out",
+    "pwd": "./dist"
+  },
+  "scripts": {
+    "watch-ts": "tsc -w",
+    "watch-tailwind": "pnpm tailwindcss -i ./src/css/styles.css -o ./dist/css/styles.css --watch",
+    "dev": "powershell ./scripts/dev.ps1",
+    "build": "powershell ./scripts/build.ps1",
+    "lint": "powershell ./scripts/lint.ps1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "extension",
+    "open-source",
+    "youtube"
+  ],
+  "devDependencies": {
+    "concurrently": "latest",
+    "postcss-import": "latest",
+    "tailwindcss": "latest",
+    "typescript": "latest"
+  }
+}
