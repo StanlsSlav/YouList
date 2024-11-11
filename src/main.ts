@@ -10,6 +10,12 @@ type MessageOptions = {
   level?: LogLevel;
 };
 
+interface IMessageable {
+  tag?: string;
+  message: any;
+  foreground?: string;
+  background?: string;
+}
 class Logger {
   constructor(isEnabled: boolean = false) {
     this.#isEnabled = isEnabled;
@@ -62,30 +68,34 @@ class Logger {
   }
 
   #info(message: any): void {
-    this.#colored("?", message, "cyan");
+    this.#colored({
+      tag: "INFO",
+      message,
+      background: "cyan",
+    });
   }
 
   #success(message: any): void {
-    this.#colored("+", message, "green");
+    this.#colored({ tag: "SUCCESS", message, background: "green" });
   }
 
   #warning(message: any): void {
-    this.#colored("!", message, "yellow");
+    this.#colored({ tag: "WARNING", message, background: "yellow" });
   }
 
   #error(message: any): void {
-    this.#colored("-", message, "red");
+    this.#colored({ tag: "ERROR", message, background: "red" });
   }
 
-  #colored(
-    tag: string,
-    message: any,
-    foreground: string = "white",
-    background: string = "transparent"
-  ): void {
+  #colored(messageable: IMessageable): void {
+    let { tag, message, foreground, background } = { ...messageable };
+    tag ??= "YL";
+    foreground ??= "black";
+    background ??= "cyan";
+
     if (typeof message === "string") {
       console.log(
-        `[%c${tag}%c] ${message}`,
+        `%c ${tag} %c ${message}`,
         `background: ${background}; color: ${foreground}`,
         `background: transparent; color: white`
       );
@@ -143,7 +153,7 @@ class Video {
   }
 }
 
-const logger = new Logger(false);
+const logger = new Logger(true);
 
 let blackList: string[] = [];
 

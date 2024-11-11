@@ -1,7 +1,11 @@
 $distributionDir = './dist'
 $srcDir = './src'
 
-New-Item -Name "dist" -Type Directory
+$distributionDirExists = Test-Path $distributionDir
+if (-not $distributionDirExists) {
+  New-Item -Name "dist" -Type Directory
+}
+
 Copy-Item -Recurse -Path $srcDir/icons -Destination $distributionDir -Force
 
 pnpm concurrently -k `
